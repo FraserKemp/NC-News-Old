@@ -1,13 +1,16 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import Header from './Header components/Header';
+import Header from './Header/Title components/Header';
+import ArticlesPage from './Articles components/ArticlesPage';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Router />
+      <Router>
+        <ArticlesPage path="/articles" />
+      </Router>
     </div>
   );
 }
