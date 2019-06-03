@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import GetTopics from './TopicsList';
 
 class TopicsPage extends Component {
   state = {
@@ -14,7 +15,16 @@ class TopicsPage extends Component {
   }
 
   render() {
-    return <div />;
+    const { topics } = this.state;
+    return (
+      <div>
+        <ul>
+          {topics.map((topic, i) => {
+            return <GetTopics key={`topic${i}`} topic={topic} />;
+          })}
+        </ul>
+      </div>
+    );
   }
 }
 
