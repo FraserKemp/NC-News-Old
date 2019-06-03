@@ -20,7 +20,16 @@ export default class ArticlesPage extends Component {
     return (
       <div>
         <Title />
-        <ArticleList articles={articles} />
+        <ul>
+          {articles.map(article => {
+            return (
+              <ArticleList
+                key={`article${article.article_id}`}
+                article={article}
+              />
+            );
+          })}
+        </ul>
       </div>
     );
   }
