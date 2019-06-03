@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import Header from './Header/Title components/Header';
+import Header from './Header components/Header';
 import ArticlesPage from './Articles components/ArticlesPage';
 import './App.css';
 
