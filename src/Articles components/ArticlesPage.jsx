@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Title from '../Title components/Title';
 import axios from 'axios';
+import ArticleList from './ArticlesList';
 
 export default class ArticlesPage extends Component {
   state = {
@@ -15,9 +16,11 @@ export default class ArticlesPage extends Component {
   }
 
   render() {
+    const { articles } = this.state;
     return (
       <div>
         <Title />
+        <ArticleList articles={articles} />
       </div>
     );
   }
