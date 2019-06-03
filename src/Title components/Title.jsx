@@ -3,7 +3,7 @@ import React from 'react';
 const Title = props => {
   return (
     <div>
-      <h3>NorthCoders News</h3>
+      <h2>Northcoders News</h2>
     </div>
   );
 };
