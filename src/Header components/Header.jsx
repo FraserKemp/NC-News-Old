@@ -4,7 +4,7 @@ import './Header.css';
 
 const Header = props => {
   return (
-    <div>
+    <div className="header">
       <nav className="navbar">
         <Link to="/articles" id="navbar-element">
           Home
@@ -12,9 +12,8 @@ const Header = props => {
         <Link to="/topics" id="navbar-element">
           Topics
         </Link>
-        <Link>Login</Link>
-        <Link>Logout</Link>
       </nav>
+      <h1>Northcoders News</h1>
     </div>
   );
 };

@@ -1,3 +1,7 @@
+.header {
+  grid-area: hd;
+}
+
 .navbar {
   list-style-type: none;
   margin: 0;

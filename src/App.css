@@ -1,4 +1,11 @@
 .App {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 60px auto 60px;
+  grid-template-areas:
+    'hd hd'
+    'main main'
+    'main main';
   text-align: center;
 }
 

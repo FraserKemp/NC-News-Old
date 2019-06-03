@@ -2,6 +2,7 @@ import React from 'react';
 import { Router } from '@reach/router';
 import Header from './Header components/Header';
 import ArticlesPage from './Articles components/ArticlesPage';
+// import LoginBox from './Login-out components/LoginBox';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Router>
-        <ArticlesPage path="/articles" />
+        <ArticlesPage id="main" path="/articles" />
       </Router>
     </div>
   );

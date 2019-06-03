@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Title from '../Title components/Title';
 import axios from 'axios';
 import ArticleList from './ArticlesList';
 import './ArticlesPage.css';
@@ -19,9 +18,8 @@ export default class ArticlesPage extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <div>
-        <Title />
-        <ul>
+      <div className="main">
+        <ul id="container">
           {articles.map(article => {
             return (
               <ArticleList
