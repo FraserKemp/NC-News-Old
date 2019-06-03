@@ -15,18 +15,42 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
   align-content: space-around;
 }
 
 #container-items {
   flex-grow: 1;
   flex-basis: 25%;
-  background-color: #d5d5d5;
+  background-color: none;
   margin: 10px;
   padding: 10px;
-  border: 1px black solid;
+  border: 1px solid #e74c3c;
   border-radius: 10px;
+  cursor: pointer;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+
+#container-items:hover {
+  color: #fff;
+}
+
+#container-items::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: #e74c3c;
+  z-index: -1;
+  transition: 0.8s;
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+
+#container-items:hover::before {
+  height: 180%;
 }
 
 /* #fa7861 */

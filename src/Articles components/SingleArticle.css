@@ -1,0 +1,12 @@
+h1#article-title {
+  text-decoration: underline;
+  padding: 20px;
+}
+
+.single-article-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#single-article-item {
+}

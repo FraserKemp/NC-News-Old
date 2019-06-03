@@ -3,7 +3,7 @@ import axios from 'axios';
 import ArticleList from './ArticlesList';
 import './ArticlesPage.css';
 
-export default class ArticlesPage extends Component {
+class ArticlesPage extends Component {
   state = {
     articles: []
   };
@@ -33,3 +33,5 @@ export default class ArticlesPage extends Component {
     );
   }
 }
+
+export default ArticlesPage;

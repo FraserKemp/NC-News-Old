@@ -7,14 +7,14 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #080b25;
+  background-color: #bdc3c7;
 }
 
 #navbar-element {
   float: left;
   display: inline;
   display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -22,5 +22,7 @@
 }
 
 #navbar-element:hover {
-  background-color: #5126b1;
+  transition: 0.8s;
+  color: white;
+  background-color: #e74c3c;
 }

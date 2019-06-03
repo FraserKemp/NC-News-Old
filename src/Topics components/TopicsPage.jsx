@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import GetTopics from './TopicsList';
+import './Topics.css';
 
 class TopicsPage extends Component {
   state = {
@@ -17,8 +18,8 @@ class TopicsPage extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <div>
-        <ul>
+      <div className="main">
+        <ul id="topics-container">
           {topics.map((topic, i) => {
             return <GetTopics key={`topic${i}`} topic={topic} />;
           })}

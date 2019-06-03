@@ -1,0 +1,22 @@
+.main {
+  padding: 20px;
+  grid-area: main;
+}
+
+#topics-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+}
+
+#topics-container-items {
+  flex-grow: 1;
+  flex-basis: 20%;
+  background-color: none;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #e74c3c;
+  border-radius: 10px;
+}
