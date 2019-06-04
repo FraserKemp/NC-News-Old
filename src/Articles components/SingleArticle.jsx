@@ -19,7 +19,6 @@ class SingleArticle extends Component {
     });
   }
   render() {
-    console.log(this.state.comments);
     const { article, comments } = this.state;
     return (
       article && (
@@ -29,7 +28,7 @@ class SingleArticle extends Component {
             <p>{article.body}</p>
             <h4>Author: {article.author}</h4>
             <h4>Created at: {article.created_at}</h4>
-            <h4>Hearts: {article.votes}</h4>
+            <h4>Likes: {article.votes}</h4>
           </ul>
           <ul>
             <h1>Comments: </h1>

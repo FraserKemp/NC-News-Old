@@ -19,7 +19,8 @@ class TopicsPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.topics !== this.state.topics) {
+    if (prevState.topics.length !== this.state.topics.length) {
+      console.log(prevState.topics, this.state.topics);
       updateTopicsState().then(topics => {
         this.setState({ topics });
       });
@@ -53,11 +54,6 @@ class TopicsPage extends Component {
     });
   };
 
-  // this.setState(prevstate => {
-  //   return {
-  //     topics: [...prevstate.topics, data.topic]
-  //   };
-
   render() {
     const { topics, button } = this.state;
     return (
@@ -73,31 +69,34 @@ class TopicsPage extends Component {
         >
           Add Topic
         </button>
-
-        {button && (
-          <form className="topic-form" onSubmit={this.handleSubmit}>
-            <label id="topic-form-label">
-              Slug:
-              <input
-                onChange={this.updateSlugInput}
-                type="text"
-                name="slug"
-                placeholder="any topic"
-              />
-            </label>
-            <br />
-            <label id="topic-form-label">
-              Description:
-              <input
-                onChange={this.updateDescriptionInput}
-                type="text"
-                name="description"
-                placeholder="northcoders is the bomb"
-              />
-            </label>
-            <button id="new-topic-submit-button">Add new Topic!</button>
-          </form>
-        )}
+        <div className="new-topic-box">
+          {button && (
+            <form className="form-body" onSubmit={this.handleSubmit}>
+              <label>
+                <div id="textbox">
+                  <input
+                    onChange={this.updateSlugInput}
+                    type="text"
+                    name="slug"
+                    placeholder="Topic name"
+                  />
+                </div>
+              </label>
+              <br />
+              <label id="topic-form-label">
+                <div id="textbox">
+                  <input
+                    onChange={this.updateDescriptionInput}
+                    type="text"
+                    name="description"
+                    placeholder="Description"
+                  />
+                </div>
+              </label>
+              <button className="btn">Add New Topic</button>
+            </form>
+          )}
+        </div>
       </div>
     );
   }

@@ -14,20 +14,25 @@ export default class LoginPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     getUserByUsername(this.state.userInput).then(user => {
-      console.log(user);
       if (user) return this.props.updateAppUser(user);
     });
   };
 
   render() {
     return (
-      <div className="LoginBox">
-        <form onSubmit={this.handleSubmit}>
+      <div className="login-box">
+        <h1>Login</h1>
+        <form className="form-body" onSubmit={this.handleSubmit}>
           <label>
-            Username:
-            <input onChange={this.updateUserInput} type="text" />
+            <div id="textbox">
+              <input
+                onChange={this.updateUserInput}
+                type="text"
+                placeholder="Username"
+              />
+            </div>
           </label>
-          <button>Login!</button>
+          <button className="btn" value="Sign In" />
         </form>
       </div>
     );
