@@ -32,7 +32,7 @@ export default class LoginPage extends Component {
               />
             </div>
           </label>
-          <button className="btn" value="Sign In" />
+          <button className="btn">Sign In</button>
         </form>
       </div>
     );
