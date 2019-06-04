@@ -47,3 +47,17 @@ export const getUserByUsername = username => {
       return user;
     });
 };
+
+export const postNewTopic = newTopic => {
+  return axios
+    .post(`${baseUrl}/topics`, newTopic)
+    .then(({ data: newTopic }) => {
+      return newTopic;
+    });
+};
+
+export const updateTopicsState = () => {
+  return axios.get(`${baseUrl}/topics`).then(({ data: { topics } }) => {
+    return topics;
+  });
+};

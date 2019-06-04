@@ -21,6 +21,8 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   align-content: space-around;
+  padding: 5px;
+  margin: 0;
 }
 
 #container-items {
