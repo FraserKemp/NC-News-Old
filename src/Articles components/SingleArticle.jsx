@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { getArticleById } from '../api';
 import './SingleArticle.css';
 
 class SingleArticle extends Component {
@@ -8,10 +8,8 @@ class SingleArticle extends Component {
   };
   componentDidMount() {
     console.log('mounted ... ');
-    const url = `https://fk-news-app.herokuapp.com/api/articles/${
-      this.props.article_id
-    }`;
-    axios.get(url).then(({ data: { article } }) => {
+    const { article_id } = this.props;
+    getArticleById(article_id).then(article => {
       this.setState({ article });
     });
   }

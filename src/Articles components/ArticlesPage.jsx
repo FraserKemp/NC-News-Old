@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import ArticleList from './ArticlesList';
 import './ArticlesPage.css';
-// import { getArticles } from '../api';
+import { getArticles } from '../api';
 
 class ArticlesPage extends Component {
   state = {
@@ -10,8 +10,7 @@ class ArticlesPage extends Component {
   };
 
   componentDidMount() {
-    const url = 'https://fk-news-app.herokuapp.com/api/articles';
-    axios.get(url).then(({ data: { articles } }) => {
+    getArticles({}).then(articles => {
       this.setState({ articles });
     });
   }

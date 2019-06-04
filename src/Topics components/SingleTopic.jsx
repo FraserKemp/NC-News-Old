@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { getTopicByName, getArticles } from '../api';
 import './SingleTopic.css';
 
 export default class SingleTopic extends Component {
@@ -10,16 +10,18 @@ export default class SingleTopic extends Component {
 
   componentDidMount() {
     console.log('mounted ... ');
-    const url = `https://fk-news-app.herokuapp.com/api/topics/${
-      this.props.topicName
-    }`;
-    axios.get(url).then(({ data: { topic } }) => {
+    const { topicName } = this.props;
+    getTopicByName(topicName).then(topic => {
       this.setState({ topic });
+    });
+    const params = { topic: topicName };
+    getArticles(params).then(articles => {
+      this.setState({ relatedArticles: articles });
     });
   }
 
   render() {
-    const { topic } = this.state;
+    const { topic, relatedArticles } = this.state;
     return (
       topic && (
         <div>

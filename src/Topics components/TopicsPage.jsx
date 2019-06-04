@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import GetTopics from './TopicsList';
+import { getTopics } from '../api';
 import './TopicsPage.css';
 
 class TopicsPage extends Component {
@@ -10,8 +10,8 @@ class TopicsPage extends Component {
   };
 
   componentDidMount() {
-    const url = 'https://fk-news-app.herokuapp.com/api/topics';
-    axios.get(url).then(({ data: { topics } }) => {
+    console.log('mounted...');
+    getTopics().then(topics => {
       this.setState({ topics });
     });
   }
