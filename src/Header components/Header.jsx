@@ -7,13 +7,18 @@ const Header = props => {
     <div className="header">
       <nav className="navbar">
         <Link to="/articles" id="navbar-element">
-          Home
+          Articles
         </Link>
         <Link to="/topics" id="navbar-element">
           Topics
         </Link>
       </nav>
-      <h1>Northcoders News</h1>
+      <Link to="/articles">
+        <h1>
+          <span id="first-letter">N</span>orthcoders
+          <span id="first-letter">N</span>ews
+        </h1>
+      </Link>
     </div>
   );
 };
