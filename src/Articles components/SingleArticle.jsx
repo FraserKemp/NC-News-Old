@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getArticleById, getCommentsByArticleId } from '../api';
+import CommentList from '../Comment components/CommentList';
 import './SingleArticle.css';
 
 class SingleArticle extends Component {
@@ -19,7 +20,7 @@ class SingleArticle extends Component {
   }
   render() {
     console.log(this.state.comments);
-    const { article } = this.state;
+    const { article, comments } = this.state;
     return (
       article && (
         <div className="single-article-container">
@@ -29,6 +30,17 @@ class SingleArticle extends Component {
             <h4>Author: {article.author}</h4>
             <h4>Created at: {article.created_at}</h4>
             <h4>Hearts: {article.votes}</h4>
+          </ul>
+          <ul>
+            <h1>Comments: </h1>
+            {comments.map(comment => {
+              return (
+                <CommentList
+                  key={`comment${comment.comment_id}`}
+                  comment={comment}
+                />
+              );
+            })}
           </ul>
         </div>
       )

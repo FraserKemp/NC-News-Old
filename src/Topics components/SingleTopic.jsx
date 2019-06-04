@@ -31,7 +31,7 @@ export default class SingleTopic extends Component {
             <p>{topic.description}</p>
           </ul>
           <ul id="r-a-container">
-            <h1 id="r-a-title">Related articles:</h1>
+            <h1 id="r-a-title">Related articles: </h1>
             {relatedArticles.map(article => {
               return (
                 <ArticleList

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import ArticleList from './ArticlesList';
 import './ArticlesPage.css';
 import { getArticles } from '../api';
