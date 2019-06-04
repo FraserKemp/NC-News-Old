@@ -9,4 +9,6 @@ h1#article-title {
 }
 
 #single-article-item {
+  margin: 16px;
+  padding: 5px;
 }

@@ -4,7 +4,7 @@ const baseUrl = 'https://fk-news-app.herokuapp.com/api';
 
 export const getArticles = params => {
   return axios
-    .get(`${baseUrl}/articles`, params)
+    .get(`${baseUrl}/articles`, { params })
     .then(({ data: { articles } }) => {
       return articles;
     });
@@ -29,5 +29,13 @@ export const getTopicByName = topicName => {
     .get(`${baseUrl}/topics/${topicName}`)
     .then(({ data: { topic } }) => {
       return topic;
+    });
+};
+
+export const getCommentsByArticleId = id => {
+  return axios
+    .get(`${baseUrl}/articles/${id}/comments`)
+    .then(({ data: { comments } }) => {
+      return comments;
     });
 };

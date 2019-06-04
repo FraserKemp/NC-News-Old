@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getTopicByName, getArticles } from '../api';
+import ArticleList from '../Articles components/ArticlesList';
 import './SingleTopic.css';
 
 export default class SingleTopic extends Component {
@@ -26,8 +27,19 @@ export default class SingleTopic extends Component {
       topic && (
         <div>
           <ul id="single-topic">
-            <h1>{topic.slug}</h1>
+            <h1>Topic: {topic.slug}</h1>
             <p>{topic.description}</p>
+          </ul>
+          <ul id="r-a-container">
+            <h1 id="r-a-title">Related articles:</h1>
+            {relatedArticles.map(article => {
+              return (
+                <ArticleList
+                  key={`realsed-article${article.article_id}`}
+                  article={article}
+                />
+              );
+            })}
           </ul>
         </div>
       )

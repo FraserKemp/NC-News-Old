@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { getArticleById } from '../api';
+import { getArticleById, getCommentsByArticleId } from '../api';
 import './SingleArticle.css';
 
 class SingleArticle extends Component {
   state = {
-    article: null
+    article: null,
+    comments: []
   };
   componentDidMount() {
     console.log('mounted ... ');
@@ -12,8 +13,12 @@ class SingleArticle extends Component {
     getArticleById(article_id).then(article => {
       this.setState({ article });
     });
+    getCommentsByArticleId(article_id).then(comments => {
+      this.setState({ comments });
+    });
   }
   render() {
+    console.log(this.state.comments);
     const { article } = this.state;
     return (
       article && (
@@ -21,8 +26,9 @@ class SingleArticle extends Component {
           <ul id="single-article-item">
             <h1 id="article-title">{article.title}</h1>
             <p>{article.body}</p>
-            <h4>Created at:{article.created_at}</h4>
-            <h4>Hearts{article.votes}</h4>
+            <h4>Author: {article.author}</h4>
+            <h4>Created at: {article.created_at}</h4>
+            <h4>Hearts: {article.votes}</h4>
           </ul>
         </div>
       )
