@@ -4,7 +4,8 @@ import './SingleTopic.css';
 
 export default class SingleTopic extends Component {
   state = {
-    topic: null
+    topic: null,
+    relatedArticles: []
   };
 
   componentDidMount() {
@@ -16,6 +17,7 @@ export default class SingleTopic extends Component {
       this.setState({ topic });
     });
   }
+
   render() {
     const { topic } = this.state;
     return (
