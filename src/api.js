@@ -39,3 +39,11 @@ export const getCommentsByArticleId = id => {
       return comments;
     });
 };
+
+export const getUserByUsername = username => {
+  return axios
+    .get(`${baseUrl}/users/${username}`)
+    .then(({ data: { user } }) => {
+      return user;
+    });
+};

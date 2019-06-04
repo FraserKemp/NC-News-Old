@@ -1,3 +1,8 @@
 #r-a-title {
   text-decoration: underline;
 }
+
+#r-a-container {
+  margin: 0;
+  padding: 0;
+}

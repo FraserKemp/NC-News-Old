@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+h4 {
+  margin: 15px;
+}
+
 .navbar {
   list-style-type: none;
   margin: 0;
@@ -21,12 +25,31 @@ a {
   display: block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-decoration: none;
   border-right: 1px solid #bbb;
 }
 
 #navbar-element:hover {
+  transition: 0.8s;
+  color: white;
+  background-color: #e74c3c;
+}
+
+#last-navbar-element {
+  float: right;
+  display: inline;
+  display: block;
+  color: black;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  border-right: 1px solid #bbb;
+}
+
+#last-navbar-element:hover {
   transition: 0.8s;
   color: white;
   background-color: #e74c3c;
