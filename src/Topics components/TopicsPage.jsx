@@ -26,33 +26,6 @@ class TopicsPage extends Component {
     }
   }
 
-  showTopicForm(bool) {
-    let newBool = bool;
-    bool ? (newBool = false) : (newBool = true);
-    this.setState({ button: newBool });
-  }
-
-  updateSlugInput = e => {
-    this.setState({ slug: e.target.value });
-  };
-
-  updateDescriptionInput = e => {
-    this.setState({ description: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { slug, description } = this.state;
-    const newTopic = { slug, description };
-    postNewTopic(newTopic).then(newTopic => {
-      this.setState(prevstate => {
-        return {
-          topics: [...prevstate.topics, newTopic]
-        };
-      });
-    });
-  };
-
   render() {
     const { topics, button } = this.state;
     return (
@@ -99,6 +72,32 @@ class TopicsPage extends Component {
       </div>
     );
   }
+  showTopicForm(bool) {
+    let newBool = bool;
+    bool ? (newBool = false) : (newBool = true);
+    this.setState({ button: newBool });
+  }
+
+  updateSlugInput = e => {
+    this.setState({ slug: e.target.value });
+  };
+
+  updateDescriptionInput = e => {
+    this.setState({ description: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { slug, description } = this.state;
+    const newTopic = { slug, description };
+    postNewTopic(newTopic).then(newTopic => {
+      this.setState(prevstate => {
+        return {
+          topics: [...prevstate.topics, newTopic]
+        };
+      });
+    });
+  };
 }
 
 export default TopicsPage;

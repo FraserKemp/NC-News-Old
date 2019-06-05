@@ -23,6 +23,7 @@ class App extends Component {
   };
 
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
         <Header
@@ -33,7 +34,7 @@ class App extends Component {
         <Router>
           <ArticlesPage path="/articles" />
           <TopicsPage path="/topics" />
-          <SingleArticle path="/articles/:article_id" />
+          <SingleArticle user={user} path="/articles/:article_id" />
           <SingleTopic path="/topics/:topicName" />
           <LoginBox updateAppUser={this.updateAppUser} path="/login" />
         </Router>

@@ -25,8 +25,12 @@ const Header = props => {
             </div>
           )}
           {user && (
-            <Link to="/articles" id="navbar-element">
-              <h4 onClick={e => logOutUser(false)}>Logout</h4>
+            <Link
+              onClick={e => logOutUser(false)}
+              to="/articles"
+              id="navbar-element"
+            >
+              <h4>Logout</h4>
             </Link>
           )}
         </div>

@@ -69,3 +69,7 @@ export const patchArticle = (article_id, direction) => {
       return article;
     });
 };
+
+export const postCommentByArticleId = (article_id, newTopic) => {
+  return axios.post(`${baseUrl}/articles/${article_id}/comments`, { newTopic });
+};
