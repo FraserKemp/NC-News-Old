@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { getArticleById, getCommentsByArticleId } from '../api';
+import { getArticleById, getCommentsByArticleId, patchArticle } from '../api';
 import CommentList from '../Comment components/CommentList';
 import './SingleArticle.css';
 
 class SingleArticle extends Component {
   state = {
     article: null,
-    comments: []
+    comments: [],
+    voteChange: 0
   };
   componentDidMount() {
     console.log('mounted ... ');
@@ -19,7 +20,7 @@ class SingleArticle extends Component {
     });
   }
   render() {
-    const { article, comments } = this.state;
+    const { article, comments, voteChange } = this.state;
     return (
       article && (
         <div className="single-article-container">
@@ -28,7 +29,13 @@ class SingleArticle extends Component {
             <p>{article.body}</p>
             <h4>Author: {article.author}</h4>
             <h4>Created at: {article.created_at}</h4>
-            <h4>Likes: {article.votes}</h4>
+            <h4>Likes: {article.votes + voteChange}</h4>
+            <button onClick={() => this.handleVote(article.article_id, 1)}>
+              Heart
+            </button>
+            <button onClick={() => this.handleVote(article.article_id, -1)}>
+              Dislike
+            </button>
           </ul>
           <ul>
             <h1>Comments: </h1>
@@ -45,6 +52,17 @@ class SingleArticle extends Component {
       )
     );
   }
+
+  handleVote = (article_id, direction) => {
+    this.setState(prevstate => {
+      return { voteChange: prevstate.voteChange + direction };
+    });
+    patchArticle(article_id, direction).catch(err => {
+      this.setState(prevstate => {
+        return { voteChange: prevstate.voteChange - direction };
+      });
+    });
+  };
 }
 
 export default SingleArticle;

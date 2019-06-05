@@ -6,3 +6,12 @@
   margin: 0;
   padding: 0;
 }
+
+#container-items a {
+  color: black;
+  transition: 0.4s;
+}
+
+#container-items a:hover {
+  color: white;
+}

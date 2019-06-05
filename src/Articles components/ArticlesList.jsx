@@ -10,6 +10,7 @@ const ArticleList = props => {
         <h4>{article.author}</h4>
         <h4>{article.topic}</h4>
         <h4>{article.votes}</h4>
+        <h4>{article.created_at}</h4>
       </Link>
     </div>
   );

@@ -49,12 +49,6 @@ h4 {
   border-right: 1px solid #bbb;
 }
 
-#last-navbar-element:hover {
-  transition: 0.8s;
-  color: white;
-  background-color: #e74c3c;
-}
-
 #first-letter {
   color: #e74c3c;
 }

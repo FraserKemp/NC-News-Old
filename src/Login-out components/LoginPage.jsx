@@ -14,7 +14,9 @@ export default class LoginPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     getUserByUsername(this.state.userInput).then(user => {
-      if (user) return this.props.updateAppUser(user);
+      if (user) {
+        return this.props.updateAppUser(user, true);
+      }
     });
   };
 

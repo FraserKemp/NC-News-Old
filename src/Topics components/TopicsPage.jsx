@@ -20,7 +20,6 @@ class TopicsPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.topics.length !== this.state.topics.length) {
-      console.log(prevState.topics, this.state.topics);
       updateTopicsState().then(topics => {
         this.setState({ topics });
       });

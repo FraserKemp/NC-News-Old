@@ -61,3 +61,11 @@ export const updateTopicsState = () => {
     return topics;
   });
 };
+
+export const patchArticle = (article_id, direction) => {
+  return axios
+    .patch(`${baseUrl}/articles/${article_id}`, { inc_votes: direction })
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};

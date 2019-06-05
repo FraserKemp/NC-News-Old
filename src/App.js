@@ -14,14 +14,22 @@ class App extends Component {
     user: null
   };
 
-  updateAppUser = user => {
-    this.setState({ user });
+  updateAppUser = (user, bool) => {
+    this.setState({ user, userLogedIn: bool });
+  };
+
+  logOutUser = bool => {
+    this.setState({ user: null, userLogedIn: bool });
   };
 
   render() {
     return (
       <div className="App">
-        <Header user={this.state.user} />
+        <Header
+          user={this.state.user}
+          userLogedIn={this.state.userLogedIn}
+          logOutUser={this.logOutUser}
+        />
         <Router>
           <ArticlesPage path="/articles" />
           <TopicsPage path="/topics" />

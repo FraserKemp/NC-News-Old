@@ -11,7 +11,7 @@ a {
 }
 
 .main {
-  padding: 20px;
+  padding: 0;
   grid-area: main;
 }
 
@@ -39,6 +39,15 @@ a {
   overflow: hidden;
 }
 
+#container-items a {
+  color: black;
+  transition: 0.4s;
+}
+
+#container-items a:hover {
+  color: white;
+}
+
 #container-items:hover {
   color: #fff;
 }
@@ -60,4 +69,27 @@ a {
   height: 180%;
 }
 
-/* #fa7861 */
+/* .dropdown button {
+  border: none;
+  float: right;
+  padding: 8px 16px;
+  margin: 8px 16px;
+  background-color: #e74c3c;
+  color: white;
+  transition: 0.8s;
+}
+
+.dropdown button:hover {
+  background-color: white;
+  color: #e74c3c;
+}
+
+#secondary-button {
+  display: block;
+}
+
+.dropdown div button {
+  display: block;
+  text-decoration: none;
+  padding: 8px;
+} */
