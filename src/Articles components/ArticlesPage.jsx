@@ -4,6 +4,7 @@ import './ArticlesPage.css';
 import { navigate } from '@reach/router';
 import { getArticles, getTopics, postNewArticle } from '../api';
 import ArticlePostForm from '../Form components/ArticlePostForm';
+import FilterButton from '../Filter button component/FilterButton';
 
 class ArticlesPage extends Component {
   state = {
@@ -37,41 +38,7 @@ class ArticlesPage extends Component {
     const { user } = this.props;
     return (
       <div>
-        <div className="dropdown">
-          <button id="filter-btn">Filter</button>
-          <ul>
-            <button
-              id="secondary-button"
-              onClick={e => {
-                const params = { sort_by: e.target.value };
-                this.filterBySelectedFilter(params);
-              }}
-              value="created_at"
-            >
-              Date Created
-            </button>
-            <button
-              id="secondary-button"
-              onClick={e => {
-                const params = { sort_by: e.target.value };
-                this.filterBySelectedFilter(params);
-              }}
-              value="comment_count"
-            >
-              Comment_count
-            </button>
-            <button
-              id="secondary-button"
-              onClick={e => {
-                const params = { sort_by: e.target.value };
-                this.filterBySelectedFilter(params);
-              }}
-              value="votes"
-            >
-              Likes
-            </button>
-          </ul>
-        </div>
+        <FilterButton filterBySelectedFilter={this.filterBySelectedFilter} />
         {user && (
           <button onClick={() => this.showNewArticleForm(button)}>
             Wrtite an Article{' '}
@@ -129,6 +96,12 @@ class ArticlesPage extends Component {
     });
   };
 
+  filterBySelectedFilter = params => {
+    getArticles(params).then(articles => {
+      this.setState({ articles });
+    });
+  };
+
   updateTitleInput = e => {
     this.setState({ titleInput: e.target.value });
   };
@@ -140,12 +113,6 @@ class ArticlesPage extends Component {
   updateTopicInput = e => {
     this.setState({ topicInput: e.target.value });
   };
-
-  filterBySelectedFilter(params) {
-    getArticles(params).then(articles => {
-      this.setState({ articles });
-    });
-  }
 
   showNewArticleForm = bool => {
     let newBool = bool;

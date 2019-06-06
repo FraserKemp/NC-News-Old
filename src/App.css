@@ -3,7 +3,8 @@
   grid-template-columns: auto;
   grid-template-rows: auto;
   grid-template-areas:
-    'hd '
+    'hd'
+    'buttons'
     'main';
   text-align: center;
 }
