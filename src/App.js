@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Header from './Header components/Header';
 import ArticlesPage from './Articles components/ArticlesPage';
 import TopicsPage from './Topics components/TopicsPage';
@@ -26,6 +26,7 @@ class App extends Component {
   updateAppUser = user => {
     this.setState({ user });
     localStorage.setItem('user', JSON.stringify(user));
+    navigate(`/articles`);
   };
 
   logOutUser = bool => {
@@ -48,7 +49,7 @@ class App extends Component {
           <SingleArticle user={user} path="/articles/:article_id" />
           <SingleTopic path="/topics/:topicName" />
           <LoginPage updateAppUser={this.updateAppUser} path="/login" />
-          <SignUpPage path="/sign-up" />
+          <SignUpPage updateAppUser={this.updateAppUser} path="/sign-up" />
         </Router>
       </div>
     );

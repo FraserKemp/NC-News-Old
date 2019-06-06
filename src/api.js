@@ -92,6 +92,12 @@ export const postCommentByArticleId = (article_id, newTopic) => {
   return axios.post(`${baseUrl}/articles/${article_id}/comments`, newTopic);
 };
 
+export const postUser = newUser => {
+  return axios.post(`${baseUrl}/users`, newUser).then(({ data: { user } }) => {
+    return user;
+  });
+};
+
 export const deleteCommentByCommentId = comment_id => {
   return axios
     .delete(`${baseUrl}/comments/${comment_id}`)
