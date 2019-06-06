@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+// import { Link } from '@reach/router';
 import { getUserByUsername } from '../api';
 import './Login.css';
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
   state = {
     userInput: null
   };
@@ -34,9 +35,13 @@ export default class LoginPage extends Component {
               />
             </div>
           </label>
+          {/* <Link to="/articles"> */}
           <button className="btn">Sign In</button>
+          {/* </Link> */}
         </form>
       </div>
     );
   }
 }
+
+export default LoginPage;

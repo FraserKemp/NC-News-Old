@@ -112,6 +112,8 @@ class SingleArticle extends Component {
                   key={`comment${comment.comment_id}`}
                   comment={comment}
                   user={user}
+                  article={article}
+                  getAllTopicsAfterDel={this.getAllTopicsAfterDel}
                 />
               );
             })}
@@ -155,6 +157,12 @@ class SingleArticle extends Component {
     let newBool = bool;
     bool ? (newBool = false) : (newBool = true);
     this.setState({ button: newBool });
+  };
+
+  getAllTopicsAfterDel = article_id => {
+    getCommentsByArticleId(article_id).then(comments => {
+      this.setState({ comments });
+    });
   };
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ArticleList from './ArticlesList';
 import './ArticlesPage.css';
+import { navigate } from '@reach/router';
 import { getArticles, getTopics, postNewArticle } from '../api';
 import ArticlePostForm from '../Form components/ArticlePostForm';
 
@@ -110,7 +111,8 @@ class ArticlesPage extends Component {
       topic: topicInput,
       username: user.username
     };
-    postNewArticle(newArticle).then(newArticle => {
+    postNewArticle(newArticle).then(article => {
+      navigate(`/articles/${article.article_id}`);
       getArticles({}).then(articles => {
         this.setState({ articles });
       });

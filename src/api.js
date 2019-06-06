@@ -59,8 +59,8 @@ export const postNewTopic = newTopic => {
 export const postNewArticle = newArticle => {
   return axios
     .post(`${baseUrl}/articles`, newArticle)
-    .then(({ data: { newArticle } }) => {
-      return newArticle;
+    .then(({ data: { article } }) => {
+      return article;
     });
 };
 
@@ -75,6 +75,16 @@ export const patchArticle = (article_id, direction) => {
     .patch(`${baseUrl}/articles/${article_id}`, { inc_votes: direction })
     .then(({ data: { article } }) => {
       return article;
+    });
+};
+
+export const patchCommentByCommentId = (comment_id, direction) => {
+  return axios
+    .patch(`${baseUrl}/comments/${comment_id}`, {
+      inc_votes: direction
+    })
+    .then(({ data: { comment } }) => {
+      return comment;
     });
 };
 
