@@ -12,3 +12,64 @@ h1#article-title {
   margin: 16px;
   padding: 5px;
 }
+
+.comment-btn {
+  width: 30%;
+  background: none;
+  border: none;
+  border-bottom: white;
+  padding: 5px;
+  font-size: 23px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: 12px 0;
+}
+
+.comment-btn:hover {
+  color: #e74c3c;
+  border-bottom: black;
+}
+
+.comment-login-box h1 {
+  font-size: 40px;
+  border-bottom: 2px solid black;
+  padding: 13px 0;
+}
+
+.comment-login-box {
+  /* width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+#comment-holder {
+  margin: 0;
+  padding: 0;
+}
+
+.comment-form-body {
+  font-family: 'Raleway', sans-serif;
+}
+
+#comment-textbox {
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 0 0;
+  margin: 0 0;
+  border-bottom: 1px solid black;
+}
+
+#comment-textbox input {
+  border: none;
+  outline: none;
+  background: none;
+  color: black;
+  font-size: 18px;
+  width: 100%;
+  float: center;
+  margin: 0 10px;
+}

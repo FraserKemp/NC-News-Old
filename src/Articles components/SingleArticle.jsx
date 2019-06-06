@@ -16,6 +16,7 @@ class SingleArticle extends Component {
     button: false,
     commentBody: ''
   };
+
   componentDidMount() {
     console.log('mounted ... ');
     const { article_id } = this.props;
@@ -26,6 +27,16 @@ class SingleArticle extends Component {
       this.setState({ comments });
     });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { article_id } = this.props;
+    if (prevState.comments.length !== this.state.comments.length) {
+      getCommentsByArticleId(article_id).then(comments => {
+        this.setState({ comments });
+      });
+    }
+  }
+
   render() {
     const { article, comments, voteChange, button } = this.state;
     const { user } = this.props;
@@ -38,14 +49,26 @@ class SingleArticle extends Component {
             <h4>Author: {article.author}</h4>
             <h4>Created at: {article.created_at}</h4>
             <h4>Likes: {article.votes + voteChange}</h4>
-            <button onClick={() => this.handleVote(article.article_id, 1)}>
-              Heart
+            <button
+              disabled={voteChange === 1}
+              id="upvote-btn"
+              onClick={() => this.handleVote(article.article_id, 1)}
+            >
+              <span role="img" aria-label="thumbs down">
+                👍
+              </span>
             </button>
-            <button onClick={() => this.handleVote(article.article_id, -1)}>
-              Dislike
+            <button
+              disabled={voteChange === -1}
+              id="downvote-btn"
+              onClick={() => this.handleVote(article.article_id, -1)}
+            >
+              <span role="img" aria-label="thumbs down">
+                👎
+              </span>
             </button>
           </ul>
-          <ul>
+          <ul id="comment-holder">
             {user && (
               <button
                 id="new-comment-btn"
@@ -55,25 +78,32 @@ class SingleArticle extends Component {
               </button>
             )}
             {button && (
-              <form className="form-body" onSubmit={this.handleSubmit}>
-                <label>
-                  <div id="textbox">
-                    <input type="text" defaultValue={user.username} />
-                  </div>
-                </label>
-                <br />
-                <label>
-                  <div
-                    onChange={this.updateCommentBody}
-                    type="text"
-                    placehoder="Your Comment"
-                    id="textbox"
-                  >
-                    <input />
-                  </div>
-                </label>
-                <button className="comment-btn">Add Comment</button>
-              </form>
+              <div className="comment-login-box">
+                <h1>Post Comment</h1>
+                <form
+                  className="comment-form-body"
+                  onSubmit={this.handleSubmit}
+                >
+                  <label>
+                    <div id="comment-textbox">
+                      <input type="text" defaultValue={user.username} />
+                    </div>
+                  </label>
+                  <br />
+                  <label>
+                    <div id="comment-textbox">
+                      <textarea
+                        onChange={this.updateCommentBody}
+                        type="text"
+                        placehoder="Your Comment"
+                      />
+                    </div>
+                  </label>
+                  <button className="comment-btn">
+                    <h3>Post</h3>
+                  </button>
+                </form>
+              </div>
             )}
             <h1>Comments: </h1>
             {comments.map(comment => {
@@ -81,6 +111,7 @@ class SingleArticle extends Component {
                 <CommentList
                   key={`comment${comment.comment_id}`}
                   comment={comment}
+                  user={user}
                 />
               );
             })}

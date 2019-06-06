@@ -56,6 +56,14 @@ export const postNewTopic = newTopic => {
     });
 };
 
+export const postNewArticle = newArticle => {
+  return axios
+    .post(`${baseUrl}/articles`, newArticle)
+    .then(({ data: { newArticle } }) => {
+      return newArticle;
+    });
+};
+
 export const updateTopicsState = () => {
   return axios.get(`${baseUrl}/topics`).then(({ data: { topics } }) => {
     return topics;
@@ -71,5 +79,14 @@ export const patchArticle = (article_id, direction) => {
 };
 
 export const postCommentByArticleId = (article_id, newTopic) => {
-  return axios.post(`${baseUrl}/articles/${article_id}/comments`, { newTopic });
+  return axios.post(`${baseUrl}/articles/${article_id}/comments`, newTopic);
+};
+
+export const deleteCommentByCommentId = comment_id => {
+  return axios
+    .delete(`${baseUrl}/comments/${comment_id}`)
+    .then(res => {
+      return res;
+    })
+    .catch(err => console.log(err));
 };

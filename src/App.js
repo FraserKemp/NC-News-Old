@@ -32,8 +32,8 @@ class App extends Component {
           logOutUser={this.logOutUser}
         />
         <Router>
-          <ArticlesPage path="/articles" />
-          <TopicsPage path="/topics" />
+          <ArticlesPage user={user} path="/articles" />
+          <TopicsPage user={user} path="/topics" />
           <SingleArticle user={user} path="/articles/:article_id" />
           <SingleTopic path="/topics/:topicName" />
           <LoginBox updateAppUser={this.updateAppUser} path="/login" />

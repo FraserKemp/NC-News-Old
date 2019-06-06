@@ -28,6 +28,7 @@ class TopicsPage extends Component {
 
   render() {
     const { topics, button } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <ul id="topics-container">
@@ -35,12 +36,14 @@ class TopicsPage extends Component {
             return <GetTopics key={`topic${i}`} topic={topic} />;
           })}
         </ul>
-        <button
-          id="new-topic-button"
-          onClick={() => this.showTopicForm(button)}
-        >
-          Add Topic
-        </button>
+        {user && (
+          <button
+            id="new-topic-button"
+            onClick={() => this.showTopicForm(button)}
+          >
+            Add Topic
+          </button>
+        )}
         <div className="new-topic-box">
           {button && (
             <form className="form-body" onSubmit={this.handleSubmit}>
