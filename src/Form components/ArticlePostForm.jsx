@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GetTopicOptions from '../Topics components/TopicOptions';
+import './ArticlePostForm';
 
 export default class ArticlePostForm extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class ArticlePostForm extends Component {
   render() {
     const { topics } = this.props;
     return (
-      <div>
+      <div className="post-article-box">
         <form
           onSubmit={e => {
             e.preventDefault();
@@ -53,7 +54,7 @@ export default class ArticlePostForm extends Component {
               })}
             </select>
           </label>
-          <button id="topic-btn">Post Article</button>
+          <button id="post-article-btn2">Post Article</button>
         </form>
       </div>
     );

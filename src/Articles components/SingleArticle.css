@@ -37,6 +37,27 @@ h1#article-title {
   padding: 13px 0;
 }
 
+#new-comment-btn {
+  font-weight: bold;
+  border-radius: 10px;
+  width: 20%;
+  background: none;
+  border: none;
+  border-bottom: white;
+  padding: 5px;
+  font-size: 23px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: 12px 0;
+}
+
+#new-comment-btn:hover {
+  background-color: #e74c3c;
+  color: white;
+  border-bottom: black;
+}
+
 .comment-login-box {
   /* width: 280px;
   position: absolute;

@@ -11,9 +11,9 @@ class FilterButton extends Component {
         onMouseLeave={() => this.showFilters(false)}
         className="dropdown"
       >
-        <button id="filter-btn">Filter</button>
+        <button id="filter-btn">Filter ☰</button>
         {showFilters && (
-          <ul id="secondary-button-holders">
+          <ul id="secondary-button-holder">
             <button
               id="secondary-button"
               onClick={e => {
@@ -24,6 +24,7 @@ class FilterButton extends Component {
             >
               Date Created
             </button>
+            <br />
             <button
               id="secondary-button"
               onClick={e => {
@@ -34,6 +35,7 @@ class FilterButton extends Component {
             >
               Comment_count
             </button>
+            <br />
             <button
               id="secondary-button"
               onClick={e => {

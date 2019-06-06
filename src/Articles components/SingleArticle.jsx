@@ -105,7 +105,6 @@ class SingleArticle extends Component {
                 </form>
               </div>
             )}
-            <h1>Comments: </h1>
             {comments.map(comment => {
               return (
                 <CommentList

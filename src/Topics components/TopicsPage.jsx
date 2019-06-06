@@ -37,10 +37,7 @@ class TopicsPage extends Component {
           })}
         </ul>
         {user && (
-          <button
-            id="new-topic-button"
-            onClick={() => this.showTopicForm(button)}
-          >
+          <button id="new-topic-btn" onClick={() => this.showTopicForm(button)}>
             Add Topic
           </button>
         )}

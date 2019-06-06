@@ -38,15 +38,23 @@ class ArticlesPage extends Component {
     const { user } = this.props;
     return (
       <div>
-        <FilterButton filterBySelectedFilter={this.filterBySelectedFilter} />
         {user && (
-          <button onClick={() => this.showNewArticleForm(button)}>
+          <button
+            className="post-article-btn"
+            onClick={() => this.showNewArticleForm(button)}
+          >
             Wrtite an Article{' '}
             <span role="img" aria-label="hand-writing">
               ✍🏻
             </span>
           </button>
         )}
+        <div className="filter-post-article-btns">
+          <FilterButton
+            className="buttons-area"
+            filterBySelectedFilter={this.filterBySelectedFilter}
+          />
+        </div>
         {button && (
           <div className="new-article-box">
             <ArticlePostForm handleSubmit={this.handleSubmit} topics={topics} />

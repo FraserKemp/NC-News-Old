@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     const { user } = this.state;
     return (
-      <div className="App">
+      <div className="grid-container">
         <Header
           user={this.state.user}
           userLogedIn={this.state.userLogedIn}

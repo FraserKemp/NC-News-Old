@@ -78,6 +78,31 @@
   margin: 0 10px;
 }
 
+button:focus {
+  outline: none;
+}
+
+#new-topic-btn {
+  font-weight: bold;
+  border-radius: 10px;
+  width: 30%;
+  background: none;
+  border: none;
+  border-bottom: white;
+  padding: 5px;
+  font-size: 23px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  transition: 0.4s;
+  margin: 12px 0;
+}
+
+#new-topic-btn:hover {
+  background-color: #e74c3c;
+  color: white;
+  border-bottom: black;
+}
+
 .btn {
   width: 100%;
   background: none;
