@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:100&display=swap');
+
+.sign-up-login-box {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sign-up-login-box h1 {
+  float: left;
+  font-size: 40px;
+  border-bottom: 2px solid;
+  padding: 13px 0;
+}
+
+#sign-up-textbox {
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid black;
+}
+
+#sign-up-textbox input {
+  border: none;
+  outline: none;
+  background: none;
+  color: black;
+  font-size: 18px;
+  width: 80%;
+  float: left;
+  margin: 0 10px;
+}
+
+.sign-up-btn {
+  width: 100%;
+  background: none;
+  border: 2px solid black;
+  color: black;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.sign-up-form-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}

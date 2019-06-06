@@ -16,7 +16,7 @@ class LoginPage extends Component {
     e.preventDefault();
     getUserByUsername(this.state.userInput).then(user => {
       if (user) {
-        return this.props.updateAppUser(user, true);
+        this.props.updateAppUser(user);
       }
     });
   };

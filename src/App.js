@@ -5,21 +5,32 @@ import ArticlesPage from './Articles components/ArticlesPage';
 import TopicsPage from './Topics components/TopicsPage';
 import SingleArticle from './Articles components/SingleArticle';
 import SingleTopic from './Topics components/SingleTopic';
-import LoginBox from './Login-out components/LoginPage';
+import LoginPage from './Login-out components/LoginPage';
+import SignUpPage from './Login-out components/SignUpPage';
 import './App.css';
 
 class App extends Component {
   state = {
-    userLogedIn: null,
     user: null
   };
 
-  updateAppUser = (user, bool) => {
-    this.setState({ user, userLogedIn: bool });
+  componentDidMount() {
+    if (localStorage.hasOwnProperty('user')) {
+      let value = localStorage.getItem('user');
+
+      value = JSON.parse(value);
+      this.setState({ user: value });
+    }
+  }
+
+  updateAppUser = user => {
+    this.setState({ user });
+    localStorage.setItem('user', JSON.stringify(user));
   };
 
   logOutUser = bool => {
     this.setState({ user: null, userLogedIn: bool });
+    localStorage.removeItem('user');
   };
 
   render() {
@@ -36,7 +47,8 @@ class App extends Component {
           <TopicsPage user={user} path="/topics" />
           <SingleArticle user={user} path="/articles/:article_id" />
           <SingleTopic path="/topics/:topicName" />
-          <LoginBox updateAppUser={this.updateAppUser} path="/login" />
+          <LoginPage updateAppUser={this.updateAppUser} path="/login" />
+          <SignUpPage path="/sign-up" />
         </Router>
       </div>
     );

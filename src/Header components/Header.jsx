@@ -3,7 +3,7 @@ import { Link } from '@reach/router';
 import './Header.css';
 
 const Header = props => {
-  const { user, userLogedIn, logOutUser } = props;
+  const { user, logOutUser } = props;
   return (
     <div className="header">
       <nav className="navbar">
@@ -14,10 +14,15 @@ const Header = props => {
           <h4>Topics</h4>
         </Link>
         <div id="last-navbar-element">
-          {!user && !userLogedIn && (
-            <Link to="/login" id="navbar-element">
-              <h4>Login</h4>
-            </Link>
+          {!user && (
+            <>
+              <Link to="/login" id="navbar-element">
+                <h4>Login</h4>
+              </Link>
+              <Link to="/sign-up" id="navbar-element">
+                <h4>Sign Up</h4>
+              </Link>
+            </>
           )}
           {user && (
             <div id="navbar-element">
