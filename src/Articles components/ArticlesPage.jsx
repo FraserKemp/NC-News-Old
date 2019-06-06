@@ -38,8 +38,8 @@ class ArticlesPage extends Component {
     return (
       <div>
         <div className="dropdown">
-          <button id="btn">Filter</button>
-          <div>
+          <button id="filter-btn">Filter</button>
+          <ul>
             <button
               id="secondary-button"
               onClick={e => {
@@ -70,7 +70,7 @@ class ArticlesPage extends Component {
             >
               Likes
             </button>
-          </div>
+          </ul>
         </div>
         {user && (
           <button onClick={() => this.showNewArticleForm(button)}>
@@ -97,6 +97,16 @@ class ArticlesPage extends Component {
               );
             })}
           </ul>
+          <button id="page-changer">
+            <span role="img" aria-label="left-arrow">
+              ⇠
+            </span>
+          </button>
+          <button id="page-changer">
+            <span role="img" aria-label="right-arrow">
+              ⇢
+            </span>
+          </button>
         </div>
       </div>
     );
