@@ -64,7 +64,6 @@ class ArticlesPage extends Component {
     const { user } = this.props;
     const { err, total_count, page } = this.state;
     const maxPages = Math.ceil(total_count / 10);
-    console.log(maxPages);
     if (err) {
       return <Error err={err} />;
     }
@@ -162,7 +161,7 @@ class ArticlesPage extends Component {
 
   filterBySelectedFilter = params => {
     getArticles(params)
-      .then(articles => {
+      .then(({ articles }) => {
         this.setState({ articles });
       })
       .catch(({ response }) => {

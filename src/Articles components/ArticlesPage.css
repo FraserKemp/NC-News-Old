@@ -97,7 +97,19 @@ a {
 }
 
 #page-changer-right {
+  background-color: none;
+  font-size: 20px;
+  border: none;
+  border-style: none;
+  border-width: none;
+  padding: 20px;
 }
 
 #page-changer-left {
+  background-color: none;
+  font-size: 20px;
+  border: none;
+  border-style: none;
+  border-width: none;
+  padding: 20px;
 }
