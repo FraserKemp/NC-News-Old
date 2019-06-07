@@ -23,8 +23,8 @@ class ArticlesPage extends Component {
 
   componentDidMount() {
     getArticles({})
-      .then(articles => {
-        this.setState({ articles });
+      .then(({ articles, total_count }) => {
+        this.setState({ articles, total_count });
       })
       .catch(({ response }) => {
         const errStatus = response.status;
@@ -47,7 +47,7 @@ class ArticlesPage extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.page !== this.state.page) {
       getArticles({ p: this.state.page })
-        .then((articles, total_count) => {
+        .then(({ articles, total_count }) => {
           this.setState({ articles, total_count });
         })
         .catch(({ response }) => {
@@ -62,7 +62,9 @@ class ArticlesPage extends Component {
   render() {
     const { articles, button, topics } = this.state;
     const { user } = this.props;
-    const { err } = this.state;
+    const { err, total_count, page } = this.state;
+    const maxPages = Math.ceil(total_count / 10);
+    console.log(maxPages);
     if (err) {
       return <Error err={err} />;
     }
@@ -102,10 +104,18 @@ class ArticlesPage extends Component {
               );
             })}
           </ul>
-          <button onClick={() => this.changePage(-1)} id="page-changer">
+          <button
+            disabled={page === 1}
+            onClick={() => this.changePage(-1)}
+            id="page-changer-left"
+          >
             <i className="fas fa-angle-double-left" />
           </button>
-          <button onClick={() => this.changePage(1)} id="page-changer">
+          <button
+            disabled={page === maxPages}
+            onClick={() => this.changePage(1)}
+            id="page-changer-right"
+          >
             <i className="fas fa-angle-double-right" />
           </button>
         </div>

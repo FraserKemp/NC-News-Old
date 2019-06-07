@@ -5,8 +5,8 @@ const baseUrl = 'https://fk-news-app.herokuapp.com/api';
 export const getArticles = params => {
   return axios
     .get(`${baseUrl}/articles`, { params })
-    .then(({ data: { articles } }) => {
-      return articles;
+    .then(({ data: { articles, total_count } }) => {
+      return { articles, total_count: +total_count };
     });
 };
 
