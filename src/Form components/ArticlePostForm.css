@@ -1,1 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100&display=swap');
+
+.post-article-box {
+  display: grid;
+}
+
+.aricle-form-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+#article-textbox {
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid black;
+}

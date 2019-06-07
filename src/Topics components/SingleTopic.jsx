@@ -26,7 +26,7 @@ export default class SingleTopic extends Component {
       });
     const params = { topic: topicName };
     getArticles(params)
-      .then(articles => {
+      .then(({ articles }) => {
         this.setState({ relatedArticles: articles });
       })
       .catch(({ response }) => {
