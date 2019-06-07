@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { postUser } from '../api';
 import './Sign-up.css';
+import Error from '../Error Component/Error';
 
 export default class SignUpPage extends Component {
   state = { username: null, name: null, avatar_url: null };
   render() {
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       <div className="sign-up-login-box">
         <h1>Sign Up</h1>
@@ -46,11 +51,18 @@ export default class SignUpPage extends Component {
     e.preventDefault();
     const { username, name, avatar_url } = this.state;
     const newUser = { username, name, avatar_url };
-    postUser(newUser).then(user => {
-      if (user) {
-        this.props.updateAppUser(user);
-      }
-    });
+    postUser(newUser)
+      .then(user => {
+        if (user) {
+          this.props.updateAppUser(user);
+        }
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   };
 
   updateUsernameInput = e => {

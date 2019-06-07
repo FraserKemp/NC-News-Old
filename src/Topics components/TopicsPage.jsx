@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GetTopics from './TopicsList';
 import { getTopics, postNewTopic, updateTopicsState } from '../api';
+import Error from '../Error Component/Error';
 import './TopicsPage.css';
 
 class TopicsPage extends Component {
@@ -8,14 +9,22 @@ class TopicsPage extends Component {
     topics: [],
     button: false,
     slug: null,
-    description: null
+    description: null,
+    err: null
   };
 
   componentDidMount() {
     console.log('mounted...');
-    getTopics().then(topics => {
-      this.setState({ topics });
-    });
+    getTopics()
+      .then(topics => {
+        this.setState({ topics });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -29,6 +38,10 @@ class TopicsPage extends Component {
   render() {
     const { topics, button } = this.state;
     const { user } = this.props;
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       <div>
         <ul id="topics-container">
@@ -90,13 +103,20 @@ class TopicsPage extends Component {
     e.preventDefault();
     const { slug, description } = this.state;
     const newTopic = { slug, description };
-    postNewTopic(newTopic).then(newTopic => {
-      this.setState(prevstate => {
-        return {
-          topics: [...prevstate.topics, newTopic]
-        };
+    postNewTopic(newTopic)
+      .then(newTopic => {
+        this.setState(prevstate => {
+          return {
+            topics: [...prevstate.topics, newTopic]
+          };
+        });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
       });
-    });
   };
 }
 

@@ -76,17 +76,17 @@ class ArticlesPage extends Component {
             </span>
           </button>
         )}
+        {user && button && (
+          <div className="new-article-box">
+            <ArticlePostForm handleSubmit={this.handleSubmit} topics={topics} />
+          </div>
+        )}
         <div className="filter-post-article-btns">
           <FilterButton
             className="buttons-area"
             filterBySelectedFilter={this.filterBySelectedFilter}
           />
         </div>
-        {button && (
-          <div className="new-article-box">
-            <ArticlePostForm handleSubmit={this.handleSubmit} topics={topics} />
-          </div>
-        )}
         <div className="new-article-box">{button && <form />}</div>
         <div className="main">
           <ul id="container">

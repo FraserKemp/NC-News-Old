@@ -113,13 +113,18 @@ class SingleArticle extends Component {
                 >
                   <label>
                     <div id="comment-textbox">
-                      <input type="text" defaultValue={user.username} />
+                      <input
+                        required={true}
+                        type="text"
+                        defaultValue={user.username}
+                      />
                     </div>
                   </label>
                   <br />
                   <label>
                     <div id="comment-textbox">
                       <textarea
+                        required={true}
                         onChange={this.updateCommentBody}
                         type="text"
                         placehoder="Your Comment"
