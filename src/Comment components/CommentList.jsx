@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { deleteCommentByCommentId, patchCommentByCommentId } from '../api';
+import Error from '../Error Component/Error';
 
 class CommentList extends Component {
   state = {
     voteChange: 0,
-    commentVotes: null
+    commentVotes: null,
+    err: null
   };
 
   componentDidMount() {
@@ -20,6 +22,10 @@ class CommentList extends Component {
   render() {
     const { comment, user } = this.props;
     const { voteChange, commentVotes } = this.state;
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       <div id="container-items">
         <h3>{comment.author}</h3>
@@ -73,9 +79,16 @@ class CommentList extends Component {
     const {
       article: { article_id }
     } = this.props;
-    deleteCommentByCommentId(comment_id).then(res => {
-      this.props.getAllTopicsAfterDel(article_id);
-    });
+    deleteCommentByCommentId(comment_id)
+      .then(res => {
+        this.props.getAllTopicsAfterDel(article_id);
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   };
 }
 

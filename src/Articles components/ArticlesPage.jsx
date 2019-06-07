@@ -5,6 +5,7 @@ import { navigate } from '@reach/router';
 import { getArticles, getTopics, postNewArticle } from '../api';
 import ArticlePostForm from '../Form components/ArticlePostForm';
 import FilterButton from '../Filter button component/FilterButton';
+import Error from '../Error Component/Error';
 
 class ArticlesPage extends Component {
   state = {
@@ -13,7 +14,8 @@ class ArticlesPage extends Component {
     created_at: 'created_at',
     comment_count: 'comment_count',
     votes: 'votes',
-    button: false
+    button: false,
+    err: null
   };
 
   componentDidMount() {
@@ -21,23 +23,46 @@ class ArticlesPage extends Component {
       .then(articles => {
         this.setState({ articles });
       })
-      .catch(err => {});
-    getTopics().then(topics => {
-      this.setState({ topics });
-    });
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
+    getTopics()
+      .then(topics => {
+        this.setState({ topics });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.articles.length !== this.state.articles.length) {
-      getArticles().then(articles => {
-        this.setState({ articles });
-      });
+      getArticles()
+        .then(articles => {
+          this.setState({ articles });
+        })
+        .catch(({ response }) => {
+          const errStatus = response.status;
+          const errMessage = response.data.msg;
+          const err = { errStatus, errMessage };
+          this.setState({ err });
+        });
     }
   }
 
   render() {
     const { articles, button, topics } = this.state;
     const { user } = this.props;
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       <div>
         {user && (
@@ -98,18 +123,39 @@ class ArticlesPage extends Component {
       topic: topicInput,
       username: user.username
     };
-    postNewArticle(newArticle).then(article => {
-      navigate(`/articles/${article.article_id}`);
-      getArticles({}).then(articles => {
-        this.setState({ articles });
+    postNewArticle(newArticle)
+      .then(article => {
+        navigate(`/articles/${article.article_id}`);
+        getArticles({})
+          .then(articles => {
+            this.setState({ articles });
+          })
+          .catch(({ response }) => {
+            const errStatus = response.status;
+            const errMessage = response.data.msg;
+            const err = { errStatus, errMessage };
+            this.setState({ err });
+          });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
       });
-    });
   };
 
   filterBySelectedFilter = params => {
-    getArticles(params).then(articles => {
-      this.setState({ articles });
-    });
+    getArticles(params)
+      .then(articles => {
+        this.setState({ articles });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   };
 
   updateTitleInput = e => {

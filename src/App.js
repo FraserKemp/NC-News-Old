@@ -7,6 +7,7 @@ import SingleArticle from './Articles components/SingleArticle';
 import SingleTopic from './Topics components/SingleTopic';
 import LoginPage from './Login-out components/LoginPage';
 import SignUpPage from './Login-out components/SignUpPage';
+import Error from './Error Component/Error';
 import './App.css';
 
 class App extends Component {
@@ -44,6 +45,7 @@ class App extends Component {
           logOutUser={this.logOutUser}
         />
         <Router>
+          <Error default />
           <ArticlesPage user={user} path="/articles" />
           <TopicsPage user={user} path="/topics" />
           <SingleArticle user={user} path="/articles/:article_id" />

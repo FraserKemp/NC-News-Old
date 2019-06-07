@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { getUserByUsername } from '../api';
+import Error from '../Error Component/Error';
 import './Login.css';
 
 class LoginPage extends Component {
   state = {
-    userInput: null
+    userInput: null,
+    err: null
   };
 
   updateUserInput = e => {
@@ -13,14 +15,25 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    getUserByUsername(this.state.userInput).then(user => {
-      if (user) {
-        this.props.updateAppUser(user);
-      }
-    });
+    getUserByUsername(this.state.userInput)
+      .then(user => {
+        if (user) {
+          this.props.updateAppUser(user);
+        }
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   };
 
   render() {
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       <div className="login-box">
         <h1>Login</h1>
@@ -34,9 +47,7 @@ class LoginPage extends Component {
               />
             </div>
           </label>
-          {/* <Link to="/articles"> */}
           <button className="btn">Sign In</button>
-          {/* </Link> */}
         </form>
       </div>
     );

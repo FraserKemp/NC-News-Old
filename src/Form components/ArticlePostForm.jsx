@@ -6,7 +6,8 @@ export default class ArticlePostForm extends Component {
   state = {
     titleInput: null,
     bodyInput: null,
-    topicInput: null
+    topicInput: null,
+    err: null
   };
   render() {
     const { topics } = this.props;
