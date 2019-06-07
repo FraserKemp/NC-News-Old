@@ -58,6 +58,7 @@ export default class ArticlePostForm extends Component {
               })}
             </select>
           </label>
+          <br />
           <button id="post-article-btn2">Post Article</button>
         </form>
       </div>

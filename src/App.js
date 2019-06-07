@@ -24,6 +24,12 @@ class App extends Component {
     }
   }
 
+  logInGuest = user => {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.setState({ user });
+    navigate(`/articles`);
+  };
+
   updateAppUser = user => {
     this.setState({ user });
     localStorage.setItem('user', JSON.stringify(user));
@@ -50,7 +56,11 @@ class App extends Component {
           <TopicsPage user={user} path="/topics" />
           <SingleArticle user={user} path="/articles/:article_id" />
           <SingleTopic path="/topics/:topicName" />
-          <LoginPage updateAppUser={this.updateAppUser} path="/login" />
+          <LoginPage
+            logInGuest={this.logInGuest}
+            updateAppUser={this.updateAppUser}
+            path="/login"
+          />
           <SignUpPage updateAppUser={this.updateAppUser} path="/sign-up" />
         </Router>
       </div>

@@ -5,6 +5,7 @@ import { navigate } from '@reach/router';
 import { getArticles, getTopics, postNewArticle } from '../api';
 import ArticlePostForm from '../Form components/ArticlePostForm';
 import FilterButton from '../Filter button component/FilterButton';
+import '@fortawesome/fontawesome-free/css/all.css';
 import Error from '../Error Component/Error';
 
 class ArticlesPage extends Component {
@@ -15,6 +16,8 @@ class ArticlesPage extends Component {
     comment_count: 'comment_count',
     votes: 'votes',
     button: false,
+    page: 1,
+    total_count: null,
     err: null
   };
 
@@ -42,10 +45,10 @@ class ArticlesPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.articles.length !== this.state.articles.length) {
-      getArticles()
-        .then(articles => {
-          this.setState({ articles });
+    if (prevState.page !== this.state.page) {
+      getArticles({ p: this.state.page })
+        .then((articles, total_count) => {
+          this.setState({ articles, total_count });
         })
         .catch(({ response }) => {
           const errStatus = response.status;
@@ -99,20 +102,22 @@ class ArticlesPage extends Component {
               );
             })}
           </ul>
-          <button id="page-changer">
-            <span role="img" aria-label="left-arrow">
-              ⇠
-            </span>
+          <button onClick={() => this.changePage(-1)} id="page-changer">
+            <i className="fas fa-angle-double-left" />
           </button>
-          <button id="page-changer">
-            <span role="img" aria-label="right-arrow">
-              ⇢
-            </span>
+          <button onClick={() => this.changePage(1)} id="page-changer">
+            <i className="fas fa-angle-double-right" />
           </button>
         </div>
       </div>
     );
   }
+
+  changePage = dir => {
+    this.setState(prevState => {
+      return { page: prevState.page + dir };
+    });
+  };
 
   handleSubmit = state => {
     const { titleInput, bodyInput, topicInput } = state;

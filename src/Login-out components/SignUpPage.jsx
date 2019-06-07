@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { postUser } from '../api';
 import './Sign-up.css';
 import Error from '../Error Component/Error';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 export default class SignUpPage extends Component {
   state = { username: null, name: null, avatar_url: null };
@@ -16,6 +17,7 @@ export default class SignUpPage extends Component {
         <form onSubmit={this.handleSubmit} className="sign-up-form-body">
           <label>
             <div id="sign-up-textbox">
+              <i className="far fa-user" />
               <input
                 required={true}
                 onChange={this.updateUsernameInput}

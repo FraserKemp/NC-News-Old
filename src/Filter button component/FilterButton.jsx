@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Filter.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 class FilterButton extends Component {
   state = { showFilters: null };
@@ -11,7 +12,9 @@ class FilterButton extends Component {
         onMouseLeave={() => this.showFilters(false)}
         className="dropdown"
       >
-        <button id="filter-btn">Filter ☰</button>
+        <button id="filter-btn">
+          Filter <i className="fas fa-angle-down" />
+        </button>
         {showFilters && (
           <ul id="secondary-button-holder">
             <button

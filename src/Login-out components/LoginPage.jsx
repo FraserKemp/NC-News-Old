@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getUserByUsername } from '../api';
 import Error from '../Error Component/Error';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './Login.css';
 
 class LoginPage extends Component {
@@ -40,6 +41,7 @@ class LoginPage extends Component {
         <form className="form-body" onSubmit={this.handleSubmit}>
           <label>
             <div id="textbox">
+              <i className="far fa-user" />
               <input
                 required={true}
                 onChange={this.updateUserInput}
@@ -50,6 +52,20 @@ class LoginPage extends Component {
           </label>
           <button className="btn">Sign In</button>
         </form>
+        <button
+          onClick={() => {
+            const user = {
+              username: 'Guest',
+              name: 'guest',
+              avatar_url:
+                'https://www.shareicon.net/data/2015/08/15/85434_guest_512x512.png'
+            };
+            this.props.logInGuest(user);
+          }}
+          className="btn"
+        >
+          Sign In As Guest
+        </button>
       </div>
     );
   }
