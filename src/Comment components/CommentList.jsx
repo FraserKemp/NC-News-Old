@@ -59,13 +59,17 @@ class CommentList extends Component {
   }
 
   handleVote = (comment_id, direction) => {
-    patchCommentByCommentId(comment_id, direction).catch(err => {
+    patchCommentByCommentId(comment_id, direction).catch(response => {
       this.setState(prevstate => {
         return { commentVotes: prevstate.commentVotes - direction };
       });
       this.setState(prevstate => {
         return { voteChange: prevstate.voteChange - direction };
       });
+      const errStatus = response.status;
+      const errMessage = response.data.msg;
+      const err = { errStatus, errMessage };
+      this.setState({ err });
     });
     this.setState(prevstate => {
       return { commentVotes: prevstate.commentVotes + direction };

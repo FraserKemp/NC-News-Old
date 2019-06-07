@@ -41,6 +41,7 @@ class LoginPage extends Component {
           <label>
             <div id="textbox">
               <input
+                required={true}
                 onChange={this.updateUserInput}
                 type="text"
                 placeholder="Username"

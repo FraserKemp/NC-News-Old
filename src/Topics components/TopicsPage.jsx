@@ -60,6 +60,7 @@ class TopicsPage extends Component {
               <label>
                 <div id="textbox">
                   <input
+                    required={true}
                     onChange={this.updateSlugInput}
                     type="text"
                     name="slug"
@@ -71,6 +72,7 @@ class TopicsPage extends Component {
               <label id="topic-form-label">
                 <div id="textbox">
                   <input
+                    required={true}
                     onChange={this.updateDescriptionInput}
                     type="text"
                     name="description"

@@ -17,6 +17,7 @@ export default class SignUpPage extends Component {
           <label>
             <div id="sign-up-textbox">
               <input
+                required={true}
                 onChange={this.updateUsernameInput}
                 type="text"
                 placeholder="Username"
@@ -26,6 +27,7 @@ export default class SignUpPage extends Component {
           <label>
             <div id="sign-up-textbox">
               <input
+                required={true}
                 onChange={this.updateNameInput}
                 type="text"
                 placeholder="Name"
@@ -35,6 +37,7 @@ export default class SignUpPage extends Component {
           <label>
             <div id="sign-up-textbox">
               <input
+                required={true}
                 onChange={this.updateAvatar_url}
                 type="text"
                 placeholder="Avatar_Url"
