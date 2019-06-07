@@ -17,9 +17,11 @@ class ArticlesPage extends Component {
   };
 
   componentDidMount() {
-    getArticles({}).then(articles => {
-      this.setState({ articles });
-    });
+    getArticles({})
+      .then(articles => {
+        this.setState({ articles });
+      })
+      .catch(err => {});
     getTopics().then(topics => {
       this.setState({ topics });
     });

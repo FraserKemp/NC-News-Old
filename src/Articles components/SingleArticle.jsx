@@ -5,6 +5,7 @@ import {
   patchArticle,
   postCommentByArticleId
 } from '../api';
+import Error from '../Error Component/Error';
 import CommentList from '../Comment components/CommentList';
 import './SingleArticle.css';
 
@@ -14,32 +15,58 @@ class SingleArticle extends Component {
     comments: [],
     voteChange: 0,
     button: false,
-    commentBody: ''
+    commentBody: '',
+    err: null
   };
 
   componentDidMount() {
     console.log('mounted ... ');
     const { article_id } = this.props;
-    getArticleById(article_id).then(article => {
-      this.setState({ article });
-    });
-    getCommentsByArticleId(article_id).then(comments => {
-      this.setState({ comments });
-    });
+    getArticleById(article_id)
+      .then(article => {
+        this.setState({ article });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
+    getCommentsByArticleId(article_id)
+      .then(comments => {
+        this.setState({ comments });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { article_id } = this.props;
     if (prevState.comments.length !== this.state.comments.length) {
-      getCommentsByArticleId(article_id).then(comments => {
-        this.setState({ comments });
-      });
+      getCommentsByArticleId(article_id)
+        .then(comments => {
+          this.setState({ comments });
+        })
+        .catch(({ response }) => {
+          const errStatus = response.status;
+          const errMessage = response.data.msg;
+          const err = { errStatus, errMessage };
+          this.setState({ err });
+        });
     }
   }
 
   render() {
     const { article, comments, voteChange, button } = this.state;
     const { user } = this.props;
+    const { err } = this.state;
+    if (err) {
+      return <Error err={err} />;
+    }
     return (
       article && (
         <div className="single-article-container">
@@ -145,11 +172,18 @@ class SingleArticle extends Component {
     this.setState(prevstate => {
       return { voteChange: prevstate.voteChange + direction };
     });
-    patchArticle(article_id, direction).catch(err => {
-      this.setState(prevstate => {
-        return { voteChange: prevstate.voteChange - direction };
+    patchArticle(article_id, direction)
+      .catch(err => {
+        this.setState(prevstate => {
+          return { voteChange: prevstate.voteChange - direction };
+        });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
       });
-    });
   };
 
   showCommentForm = bool => {
@@ -159,9 +193,16 @@ class SingleArticle extends Component {
   };
 
   getAllTopicsAfterDel = article_id => {
-    getCommentsByArticleId(article_id).then(comments => {
-      this.setState({ comments });
-    });
+    getCommentsByArticleId(article_id)
+      .then(comments => {
+        this.setState({ comments });
+      })
+      .catch(({ response }) => {
+        const errStatus = response.status;
+        const errMessage = response.data.msg;
+        const err = { errStatus, errMessage };
+        this.setState({ err });
+      });
   };
 }
 
